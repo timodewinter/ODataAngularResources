@@ -163,7 +163,13 @@
               url = url + '(:' + self.defaults.odatakey + ')';
 
               if (data) {
-                params[self.defaults.odatakey] = data[self.defaults.odatakey];
+                var odatakeyvalue = data[self.defaults.odatakey];
+                if (typeof odatakeyvalue === 'string' || odatakeyvalue instanceof String){
+                  // it's a string
+                  odatakeyvalue = "'"+odatakeyvalue+"'";
+                }
+                params[self.defaults.odatakey] = odatakeyvalue;
+                //params[self.defaults.odatakey] = data[self.defaults.odatakey];
               }
             }
 
